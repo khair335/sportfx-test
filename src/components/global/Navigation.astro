@@ -1,0 +1,104 @@
+---
+// Assets
+import Logo from "@/components/assets/Logo.astro";
+import ThemeToggle from "@/components/assets/ThemeToggle.astro";
+// Fundations
+import Link from "@/components/fundations/elements/Link.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<div class="flex justify-center">
+  <div
+    class="w-full bg-base-900 rounded-(--card-radius) p-(--card-padding) group [--card-padding:--spacing(1)] [--card-radius:var(--radius-lg)]"
+  >
+    <div class="flex items-center justify-between p-0.5 gap-1">
+      <!-- Logo/Home button -->
+
+      <div
+        class="flex items-center justify-center size-10 md:size-14 bg-white dark:bg-base-50 rounded-[calc(var(--card-radius)-var(--card-padding))]"
+      >
+        <a href="/">
+          <svg
+            class="w-[30px] h-10 md:h-[25px] text-black hover:text-gray-700 transition-colors"
+            viewBox="0 0 30 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              class="fill-current"
+              d="M6.10352e-05 13.1509H6.466L10.5228 19.5432H16.8542L13.1383 13.1509H19.3507L23.4461 19.5432L20.2709 25H9.6735L6.08055 22.7448L6.10352e-05 13.1509Z"
+            ></path>
+            <path
+              class="fill-current"
+              d="M29.4643 11.9732H22.9308L18.8315 5.51392H12.4336L16.1884 11.9732H9.91133L5.77277 5.51392L8.98114 1.14441e-05H19.6894L23.3202 2.27855L29.4643 11.9732Z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+      <div class="flex items-center justify-center lg:gap-4 md:gap-0">
+        <a
+          href="#overview-section"
+          class="px-2 md:px-4 py-1 h-10 md:h-14 text-[10px] md:text-sm flex items-center text-center hover:text-white/90 duration-300 rounded-[calc(var(--card-radius)-var(--card-padding))] text-[#989898]"
+          >Overview</a
+        >
+        <a
+          href="#trusted-section"
+          class="px-2 md:px-4 py-1 h-10 md:h-14 text-[10px] md:text-sm flex items-center text-center hover:text-white/90 duration-300 rounded-[calc(var(--card-radius)-var(--card-padding))] text-[#989898]"
+          >Trusted by Pros</a
+        >
+        <a
+          href="#how-it-works-section"
+          class="px-2 md:px-4 py-1 h-10 md:h-14 text-[10px] md:text-sm flex items-center text-center hover:text-white/90 duration-300 rounded-[calc(var(--card-radius)-var(--card-padding))] text-[#989898]"
+          >How It Works</a
+        >
+        <a
+          href="/contact-us"
+          class="px-2 md:px-4 py-1 h-10 md:h-14 text-[10px] md:text-sm flex items-center justify-center text-center hover:text-white/90 duration-300 rounded-[calc(var(--card-radius)-var(--card-padding))] text-[#989898]"
+        >
+          Contact Us
+          <!-- <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-5"
+          >
+            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg> -->
+        </a>
+      </div>
+      <div>
+        <a
+          href="#join-waitlist-section"
+          class="px-2 py-1 h-10 md:h-14 text-[10px] md:text-sm flex font-medium items-center bg-base-50 text-base-900 outline outline-base-900 duration-300 rounded-[calc(var(--card-radius)-var(--card-padding))]"
+        >
+          Join the Waitlist
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // JavaScript can be added here if needed for interactivity
+  // Example: highlight active page
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuItems = document.querySelectorAll("button");
+
+    menuItems.forEach((item) => {
+      item.addEventListener("click", function () {
+        // Remove active class from all buttons
+        menuItems.forEach((btn) =>
+          btn.classList.remove("text-black", "font-medium")
+        );
+
+        // Add active class to clicked button
+        this.classList.add("text-black", "font-medium");
+      });
+    });
+  });
+</script>

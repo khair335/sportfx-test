@@ -1,0 +1,3 @@
+# ----- Global defaults -----
+# Everything not matched later falls to the core maintainers.
+*    @SportFX/code-owners

@@ -1,0 +1,48 @@
+---
+interface Props {
+  videoUID?: string;
+  class?: string;
+}
+
+const { videoUID, class: className } = Astro.props;
+// Use the specific video URL provided
+const videoSrc = "https://customer-kd8b2zcop4ozwi4i.cloudflarestream.com/15287eb719c3f6db586acfe071b8f29e/iframe?controls=true&preload=metadata";
+---
+
+<div class="video-player-container">
+  <iframe
+    src={videoSrc}
+    class:list={["cloudflare-stream-background", className]}
+    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+    allowfullscreen="true"
+    id="video-iframe"
+  ></iframe>
+</div>
+
+<style>
+  .video-player-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .cloudflare-stream-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .cloudflare-stream-background {
+      top: 0;
+    }
+  }
+</style>

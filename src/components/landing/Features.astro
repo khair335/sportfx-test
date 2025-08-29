@@ -1,0 +1,82 @@
+---
+// Pure Astro component - no React needed
+import { Image } from "astro:assets";
+import Mobile1 from "@/images/landing/Real-Midnight.png";
+import Mobile2 from "@/images/landing/Real-Midnight2.png";
+import Mobile3 from "@/images/landing/Real-Midnight3.png";
+import Mobile4 from "@/images/landing/Real-Midnight4.png";
+import Download from "@/images/landing/download.svg";
+import MobileIcon2 from "@/images/landing/mobileicon2.svg";
+import MobileIcon3 from "@/images/landing/mobileicon3.svg";
+
+const features = [
+  {
+    image: Mobile1,
+    icon: Download,
+    text: "Drop In Your Film. Let the Breakdown Begin.",
+  },
+  {
+    image: Mobile2,
+    icon: MobileIcon2,
+    text: "It Sees What You Can't. Then Tells You How to Win.",
+  },
+  {
+    image: Mobile3,
+    icon: MobileIcon3,
+    text: "You move. sportFX learns. You level up.",
+  },
+  {
+    image: Mobile4,
+    icon: Download,
+    text: "Not just tracking. PROOF YOUR DREAM IS IN MOTION.",
+    isHighlighted: true,
+  },
+];
+---
+
+<section
+  id="how-it-works-section"
+  class="relative w-full py-16 bg-[#E7E8E9] pt-[30px] pb-[127px]"
+>
+  <div class="flex flex-col items-center">
+    <h1
+      class="max-w-[90%] md:max-w-[740px] lg:max-w-[968px] px-5 w-full m-auto mb-[68px] font-geist font-bold text-3xl md:text-4xl lg:text-[60px] xl:text-[80px] leading-[100%] tracking-[-0.04em] text-center text-[#353535]"
+    >
+      Your Game. <span
+        class="bg-[conic-gradient(from_3.01deg_at_38.8%_-45.38%,_#C2FF35_0deg,_#32E6BC_146.52deg,_#27C5FF_360deg)] bg-clip-text text-transparent dark:bg-[conic-gradient(from_3.01deg_at_38.8%_-45.38%,_#27C5FF_0deg,_#32E6BC_146.52deg,_#C2FF35_360deg)]"
+        >Reimagined,</span
+      > Step by Step.
+    </h1>
+    <!-- Feature descriptions -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 xl:gap-8">
+      {
+        features.map((feature, index) => (
+          <div class="w-full max-w-[200px] xl:max-w-[300px] border-none shadow-none flex flex-col items-center">
+            <Image src={feature.image} alt="Feature" />
+            <div class="flex flex-col items-center gap-3 p-4">
+              <div class="relative w-8 h-8">
+                <div
+                  class={`relative w-[26px] h-[26px] top-[3px] left-[3px] ${feature.icon.background || ""}`}
+                >
+                  <Image src={feature.icon} alt="Feature" />
+                </div>
+              </div>
+              <div class="font-['Geist',Helvetica] font-normal text-[#343434] text-xs lg:text-lg xl:text-2xl text-center leading-6">
+                {feature.isHighlighted ? (
+                  <span>
+                    <span class="font-normal">Not just tracking. </span>
+                    <span class="font-semibold">
+                      PROOF YOUR DREAM IS IN MOTION.
+                    </span>
+                  </span>
+                ) : (
+                  feature.text
+                )}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

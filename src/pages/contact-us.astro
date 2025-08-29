@@ -1,0 +1,21 @@
+---
+import ContactUsLayout from "@/layouts/ContactUsLayout.astro";
+import MailchimpContactUs from "@/components/forms/mailchimp/MailchimpContactUs.astro";
+---
+
+<ContactUsLayout logoSrc="/sportfx_ai_logo_black.svg" logoAlt="sportFX Logo">
+  <div class="flex flex-col justify-center">
+    <h1 class="text-4xl font-bold text-center mb-8">Contact Us</h1>
+    <p class="text-xl mb-4">
+      Discover how Nuriva Tech AI can revolutionize your team's performance,
+      scouting, and strategy. Our AI-driven platform is built to transform
+      complex data into actionable insights that align with your coaching
+      language and on-field needs.
+    </p>
+    <p class="text-xl mb-4">
+      Get a firsthand look at how our propietary tools can give your
+      organization a competitive edge.
+    </p>
+    <MailchimpContactUs class="w-full ml-0 md:ml-[8rem]" />
+  </div>
+</ContactUsLayout>

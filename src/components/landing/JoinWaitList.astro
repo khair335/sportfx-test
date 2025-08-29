@@ -1,0 +1,37 @@
+---
+// Pure Astro component -
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import MailchimpWaitlist from "../forms/mailchimp/MailchimpWaitlist.astro";
+---
+
+<section
+  id="join-waitlist-section"
+  class="relative w-full py-16 lg:py-[174px] bg-[#E7E8E9]"
+>
+  <Wrapper
+    variant="standard"
+    class="py-0 max-w-[740px] lg:max-w-[968px] xl:max-w-[1390px] px-5 xl:px-[48px]"
+  >
+    <div
+      class="max-w-[100%] md:max-w-[740px] lg:max-w-[968px] xl:max-w-[1390px] flex flex-col-reverse md:flex-row items-center justify-center gap-11 px-0 md:px-5 mx-auto"
+    >
+      <MailchimpWaitlist class="flex-1" />
+
+      <div class="flex flex-col items-start justify-center gap-5 flex-1">
+        <h2
+          class="self-stretch [font-family:'Geist',Helvetica] font-medium text-[#343434] text-2xl md:text-3xl lg:text-5xl xl:text-6xl tracking-[-2.40px] leading-normal md:leading-[40px] xl:leading-[59.4px]"
+        >
+          Get Ahead <br class="hidden md:block" />
+          of the Game.
+        </h2>
+
+        <p
+          class="[font-family:'Geist',Helvetica] font-normal text-[#343434] text-sm md:text-lg lg:text-2xl xl:text-[32px] leading-normal lg:leading-[35.2px] max-w-[607px]"
+        >
+          Be the first to experience AI-powered training. Join the waitlist now
+          and unlock early access perks.
+        </p>
+      </div>
+    </div>
+  </Wrapper>
+</section>

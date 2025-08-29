@@ -1,0 +1,145 @@
+---
+// Foundations
+import "../styles/global.css";
+import BaseHead from "@/components/fundations/head/BaseHead.astro";
+// Components
+import Header from "@/components/global/Header.astro";
+import CompactFooter from "@/components/global/CompactFooter.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Scripts
+import AOSBody from "@/components/fundations/scripts/AOSBody.astro";
+// Markdown processing
+import { marked } from "marked";
+
+// API endpoint for fetching Data Processing Agreement
+const API_ENDPOINT = "https://dev-api.sportfx.ai/documents/dpa/latest";
+
+// Interface for API response
+interface ApiResponse {
+  slug: string;
+  version: string;
+  title: string;
+  created_at: string;
+  sha256: string;
+  markdown: string;
+  template_variables: Record<string, string>;
+}
+
+// Fetch Data Processing Agreement content from API
+let dpaData: ApiResponse | null = null;
+let error: string | null = null;
+
+try {
+  const response = await fetch(API_ENDPOINT);
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  dpaData = await response.json();
+} catch (e) {
+  error = e instanceof Error ? e.message : "Failed to fetch Data Processing Agreement";
+  console.error("Error fetching Data Processing Agreement:", e);
+}
+
+// Fallback data if API fails
+const fallbackTitle = "Data Processing Agreement";
+const fallbackLastUpdated = "2025-01-01";
+
+// Use API data or fallback
+const title = dpaData?.title || fallbackTitle;
+const lastUpdated = dpaData?.created_at
+  ? new Date(dpaData.created_at).toLocaleDateString()
+  : fallbackLastUpdated;
+const markdownContent = dpaData?.markdown || "";
+
+// Replace template variables in markdown content
+let processedMarkdown = markdownContent;
+if (markdownContent && dpaData?.template_variables && !error) {
+  try {
+    // Replace template variables in the format {{variable_name}}
+    Object.entries(dpaData.template_variables).forEach(([key, value]) => {
+      const templatePattern = new RegExp(`{{\\s*${key}\\s*}}`, "g");
+      const replacementCount = (processedMarkdown.match(templatePattern) || [])
+        .length;
+      processedMarkdown = processedMarkdown.replace(templatePattern, value);
+
+      // Log successful replacements for debugging
+      if (replacementCount > 0) {
+        console.log(
+          `Replaced ${replacementCount} occurrence(s) of template variable: ${key}`
+        );
+      }
+    });
+  } catch (e) {
+    console.error("Error processing template variables:", e);
+  }
+}
+
+// Convert markdown to HTML
+let htmlContent = "";
+if (processedMarkdown && !error) {
+  try {
+    htmlContent = await marked(processedMarkdown);
+  } catch (e) {
+    error = "Failed to process markdown content";
+    console.error("Error processing markdown:", e);
+  }
+}
+---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <BaseHead title={title} description="Data Processing Agreement for using our services" />
+  </head>
+  <body class="bg-base-100 min-h-screen flex flex-col">
+    <Header logoSrc="/sportfx_ai_logo_black.svg" logoAlt="sportFX Logo" />
+    <main
+      class="w-full mx-auto flex flex-col items-center pt-12 px-4 sm:px-6 lg:px-8 flex-grow"
+    >
+      <div class="max-w-4xl w-full">
+        <!-- Page Header -->
+        <div class="mb-12">
+          <Text
+            tag="h1"
+            variant="display3XL"
+            class="text-base-900 font-medium tracking-tighter mb-4"
+          >
+            {title}
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-500">
+            Last updated: {lastUpdated}
+          </Text>
+        </div>
+
+        <!-- Legal Document Content -->
+        <div class="mb-12">
+          <Wrapper variant="prose">
+            {
+              error ? (
+                <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                  <Text tag="h2" variant="displayMD" class="text-red-800 mb-2">
+                    Error Loading Data Processing Agreement
+                  </Text>
+                  <Text tag="p" variant="textBase" class="text-red-600 mb-4">
+                    We're sorry, but we couldn't load the latest Data Processing Agreement.
+                    Please try refreshing the page or contact support if the
+                    problem persists.
+                  </Text>
+                  <Text tag="p" variant="textSM" class="text-red-500">
+                    Error: {error}
+                  </Text>
+                </div>
+              ) : (
+                <div set:html={htmlContent} />
+              )
+            }
+          </Wrapper>
+        </div>
+      </div>
+    </main>
+    <CompactFooter />
+    <AOSBody />
+  </body>
+</html>

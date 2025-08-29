@@ -1,0 +1,471 @@
+---
+// Chat conversation data
+const chatData = [
+  {
+    userQuestion: "Where am I losing power?",
+    aiResponse: "From the video, most of your **power loss** is happening during the transition from your load to your forward swing. Your **hips** start opening before your **hands fully fire**, which **reduces** the **torque** you can generate.",
+    highlights: {
+      yellow: ["power loss", "reduces"],
+      green: ["hips", "hands fully fire", "torque"]
+    }
+  },
+  {
+    userQuestion: "What should I work on next?",
+    aiResponse: "Your **acceleration and change-of-direction scores are a bit below average**. Let's focus on a **faster first step** out of your stance, **cleaner plant angles** on cuts, and **quicker hip turns**—try ladder work, the 5-10-5 shuttle, and resisted starts.",
+    highlights: {
+      yellow: ["acceleration and change-of-direction scores are a bit below average"],
+      green: ["faster first step", "cleaner plant angles", "quicker hip turns"]
+    }
+  },
+  {
+    userQuestion: "What’s my next focus?",
+    aiResponse: "Your **tempo and face-to-path scores are** **slightly** **below average**. Let's aim for a steadier 3:1 tempo and **better face control**—use metronome half-swings, **alignment-stick drills**, and **slow-motion reps** to groove **consistency**.",
+    highlights: {
+      yellow: ["slightly"],
+      green: ["better face control", "alignment-stick drills", "slow-motion reps", "consistency"]
+    }
+  }
+];
+---
+
+<section>
+  <div class="max-w-[1440px] w-full mx-auto px-4 md:px-14 py-20">
+    <div class="flex items-start flex-col lg:flex-row xl:gap-0 gap-10">
+    <div>
+      <div class=" xl:text-[80px]  lg:text-6xl  text-5xl  font-plus-jakarta font-bold text-white leading-[100%]">
+        <h2>Ask.</h2>
+        <h2>Analyze. </h2>
+        <h2 class="bg-gradient-to-r from-[#32E6BC] to-[#fff] bg-clip-text text-transparent">Improve.</h2>
+      </div>
+
+      <div class="mt-5 bg-gradient-to-r from-[#32E6BC] to-[#fff] bg-clip-text text-transparent font-semibold text-2xl xl:text-[32px] leading-[100%]">
+        <p>Your film finally has a</p>
+        <p>voice... and it talks</p>
+        <p>back.</p>
+      </div>
+    </div>
+    <!-- slider -->
+    <div class="chat-slider-container mt-20">
+      <div class="chat-slider">
+        {chatData.map((chat, index) => {
+          const slideClass = index === 0 ? 'chat-slide active' : 'chat-slide';
+          return (
+            <div class={slideClass}>
+              <div class="chat-interface">
+                <div class="user-message">
+                  <div class="message-bubble">
+                    {chat.userQuestion}
+                  </div>
+                </div>
+                <div class="ai-response">
+                  {chat.aiResponse.split('**').map((part, partIndex) => {
+                    if (partIndex % 2 === 0) {
+                      return <span>{part}</span>;
+                    } else {
+                      const isYellow = chat.highlights.yellow.includes(part);
+                      const isGreen = chat.highlights.green.includes(part);
+                      const highlightClass = isYellow ? 'highlight-yellow' : isGreen ? 'highlight-green' : '';
+                      return <span class={highlightClass}>{part}</span>;
+                    }
+                  })}
+                </div>
+                <div class="input-container">
+                  <input type="text" placeholder="Ask anything you want" class="chat-input" />
+                  <button class="send-button">
+                    <svg width="32" height="32 " viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Slider Navigation Dots -->
+      <div class="slider-section mt-8">
+        <div class="pagination-dots">
+          {chatData.map((_, index) => {
+            const dotClass = index === 0 ? 'dot active' : 'dot';
+            return <div class={dotClass} data-slide={index}></div>;
+          })}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<style>
+  .chat-slider-container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .chat-slider {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chat-slide {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .chat-slide.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .chat-interface {
+    background: transparent;
+    border-radius: 24px;
+    padding: 0 32px;
+    /* min-height: 500px; */
+    position: relative;
+    border: none;
+  }
+
+  .user-message {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+  }
+
+  .message-bubble {
+    background: rgba(42, 42, 42, 0.15);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 100dvh;
+   
+  
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 23px;
+    font-weight: 400;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .message-bubble::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.08) 25%,
+      rgba(255, 255, 255, 0.04) 50%,
+      rgba(255, 255, 255, 0.02) 75%,
+      transparent 100%
+    );
+    pointer-events: none;
+    border-radius: 20px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .message-bubble::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.06) 30%,
+      transparent 60%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+    border-radius: 19px;
+    border-bottom-right-radius: 7px;
+    pointer-events: none;
+  }
+
+  .message-bubble:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.5),
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .ai-response {
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 23px;
+    line-height: 140%;
+    margin-bottom: 40px;
+    padding: 0 8px;
+    text-align: left;
+    
+  }
+
+  .highlight-yellow {
+    color: #FFD700;
+    font-weight: 600;
+  }
+
+  .highlight-green {
+    color: #00FFB7;
+    font-weight: 600;
+  }
+
+  .input-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .chat-input {
+    flex: 1;
+    background: rgba(42, 42, 42, 0.15);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 16px 24px;
+    height: 78px;
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 24px;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .chat-input::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.08) 25%,
+      rgba(255, 255, 255, 0.04) 50%,
+      rgba(255, 255, 255, 0.02) 75%,
+      transparent 100%
+    );
+    pointer-events: none;
+    border-radius: 19px;
+  }
+
+  .chat-input:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.5),
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .chat-input:focus {
+    outline: none;
+    border-color: rgba(0, 255, 183, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.5),
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+      0 0 0 3px rgba(0, 255, 183, 0.15),
+      0 0 20px rgba(0, 255, 183, 0.1);
+  }
+
+  .chat-input::placeholder {
+    color: #888;
+  }
+
+  .send-button {
+   
+  
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+   
+  }
+
+
+
+  .slider-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pagination-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .dot.active {
+    background: white;
+    transform: scale(1.2);
+  }
+
+  .dot:hover {
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  @media (max-width: 1280px) {
+    .chat-slider-container {
+      max-width: 500px;
+    }
+    .chat-interface {
+      padding: 0 16px;
+    }
+    .message-bubble {
+      font-size: 18px;
+    }
+    .ai-response {
+      font-size: 18px;
+    }
+    .chat-input {
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 1024px){
+    .chat-slider-container{
+      margin: 0;
+      margin-left: auto;
+    }
+  }
+  @media (max-width: 768px){
+    .chat-input{
+      border-radius: 6px;
+    padding: 12px 12px;
+    height: 48px;
+    }
+  }
+  
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.chat-slide');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+    let slideInterval;
+
+    // Function to show a specific slide
+    function showSlide(index) {
+      // Hide all slides
+      slides.forEach(slide => {
+        slide.classList.remove('active');
+      });
+      
+      // Remove active class from all dots
+      dots.forEach(dot => {
+        dot.classList.remove('active');
+      });
+      
+      // Show the current slide
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+      
+      currentSlide = index;
+    }
+
+    // Function to go to next slide
+    function nextSlide() {
+      const nextIndex = (currentSlide + 1) % slides.length;
+      showSlide(nextIndex);
+    }
+
+    // Function to go to previous slide
+    function prevSlide() {
+      const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prevIndex);
+    }
+
+    // Add click event listeners to dots
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        showSlide(index);
+        resetInterval();
+      });
+    });
+
+    // Function to reset the interval
+    function resetInterval() {
+      clearInterval(slideInterval);
+      startAutoSlide();
+    }
+
+    // Function to start auto-sliding
+    function startAutoSlide() {
+      slideInterval = setInterval(() => {
+        nextSlide();
+      }, 5000); // Change slide every 5 seconds
+    }
+
+    // Initialize the slider
+    showSlide(0);
+    startAutoSlide();
+
+    // Pause auto-sliding on hover
+    const sliderContainer = document.querySelector('.chat-slider-container');
+    sliderContainer.addEventListener('mouseenter', () => {
+      clearInterval(slideInterval);
+    });
+
+    sliderContainer.addEventListener('mouseleave', () => {
+      startAutoSlide();
+    });
+
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        prevSlide();
+        resetInterval();
+      } else if (e.key === 'ArrowRight') {
+        nextSlide();
+        resetInterval();
+      }
+    });
+  });
+</script>
+

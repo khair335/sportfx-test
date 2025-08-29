@@ -1,0 +1,56 @@
+---
+// Header Component
+// This component renders a header with a logo on the left side
+// Props:
+// - logoSrc: String path to the logo image (required)
+// - logoAlt: Alt text for the logo (default: "Logo")
+// - logoWidth: Width of the logo (default: 120)
+// - logoHeight: Height of the logo (default: 40)
+// - class: Additional classes for the header container
+// - logoClass: Additional classes for the logo image
+// - href: Link destination when logo is clicked (default: "/")
+
+interface Props {
+  logoSrc: string;
+  logoAlt?: string;
+  logoWidth?: number;
+  logoHeight?: number;
+  class?: string;
+  logoClass?: string;
+  href?: string;
+}
+
+const {
+  logoSrc,
+  logoAlt = "Logo",
+  logoWidth = 120,
+  logoHeight = 40,
+  class: className = "",
+  logoClass = "",
+  href = "/",
+} = Astro.props;
+---
+
+<header class:list={["w-full bg-base-100", className]}>
+  <div class="mx-auto px-4 sm:px-6 lg:px-16 lg:py-4">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo on the left -->
+      <div class="flex-shrink-0">
+        <a href={href} class="flex items-center">
+          <img
+            src={logoSrc}
+            alt={logoAlt}
+            width={logoWidth}
+            height={logoHeight}
+            class:list={["h-8 w-auto", logoClass]}
+          />
+        </a>
+      </div>
+
+      <!-- Optional slot for additional header content (navigation, buttons, etc.) -->
+      <div class="flex items-center space-x-4">
+        <slot />
+      </div>
+    </div>
+  </div>
+</header>

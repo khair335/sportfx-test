@@ -1,0 +1,74 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Sections
+import Hero from "@/components/landing/Hero.astro";
+import Services from "@/components/landing/Services.astro";
+import Philosphy from "@/components/landing/Philosphy.astro";
+import HowWeWork from "@/components/landing/HowWeWork.astro";
+import JoinWaitList from "@/components/landing/JoinWaitList.astro";
+import FromDayGameDay from "@/components/landing/FromDayGameDay.astro";
+import Features from "@/components/landing/Features.astro";
+import HeroNew from "@/components/landing/HeroNew.astro";
+import Waitlist from "@/components/landing/Waitlist.astro";
+import Performance from "@/components/landing/Performance.astro";
+import Coaching from "@/components/landing/Coaching.astro";
+import InststatInsight from "@/components/landing/InststatInsight.astro";
+import ThirdAnalysis from "@/components/landing/ThirdAnalysis.astro";
+import Trusted from "@/components/landing/Trusted.astro";
+import Analyze from "@/components/landing/Analyze.astro";
+import Reimagined from "@/components/landing/Reimagined.astro";
+import LandingFooter from  "@/components/landing/LandingFooter.astro";
+import Waitlist2 from "@/components/landing/Waitlist2.astro";
+import Cards from "@/components/landing/cards.astro";
+import ScrollAnimationSection from "@/components/landing/ScrollAnimationSection.astro";
+// Components
+import LogoCloud from "@/components/assets/LogoCloud.astro";
+import WorkEntries1 from "@/components/work/WorkEntries1.astro";
+import BlogEntries1 from "@/components/blog/BlogEntries1.astro";
+// Content
+import { getCollection } from "astro:content";
+
+const allWork = await getCollection("work");
+// Sort posts by date
+const allPosts = await getCollection("posts");
+allPosts.sort((a, b) => {
+  const dateA = new Date(a.data.pubDate).getTime(); // Convert to timestamp
+  const dateB = new Date(b.data.pubDate).getTime(); // Convert to timestamp
+  return dateB - dateA; // Compare timestamps
+});
+---
+
+<BaseLayout>
+  <div>
+    <div class="bg_1">
+
+    
+    <HeroNew />
+    <Waitlist />
+    <Performance />
+    <Trusted /> 
+    
+  </div>
+  <div class="bg_2">
+
+ 
+  <Analyze />
+  <Reimagined/>
+  <Waitlist2/>
+
+  <LandingFooter/>
+</div>
+    <!-- <Coaching />
+    <InststatInsight />
+    <ThirdAnalysis />
+    
+    
+    <Features />
+    <FromDayGameDay />
+    <JoinWaitList /> -->
+ 
+  </div>
+</BaseLayout>

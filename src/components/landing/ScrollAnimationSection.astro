@@ -1,0 +1,423 @@
+---
+// Component for the scroll animation section
+---
+
+<div class="scroll-wrapper" id="scrollSection">
+  <div class="scroll-container" id="scrollContainer">
+    <!-- Title Section - Fixed position -->
+    <div class="title-section">
+      <h1 class="section-title">Interactive Experience</h1>
+      <div class="title-underline"></div>
+    </div>
+
+    <!-- Description - Shows when no cards are active -->
+    <div class="description-container" id="descriptionContainer">
+      <div class="description-content">
+        <p class="description-text">
+          Discover our innovative solutions through an immersive scrolling experience. 
+          Each card represents a unique feature that will reveal itself as you scroll.
+        </p>
+        <div class="progress-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards Container -->
+    <div class="cards-container">
+      <div class="card" data-index="0">
+        <div class="card-content">
+          <div class="card-icon">🚀</div>
+          <h3>Advanced Analytics</h3>
+          <p>Comprehensive insights and data-driven decision making</p>
+          <div class="card-progress">
+            <div class="progress-bar active"></div>
+            <div class="progress-bar"></div>
+            <div class="progress-bar"></div>
+            <div class="progress-bar"></div>
+            <div class="progress-bar"></div>
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card" data-index="1">
+        <div class="card-content">
+          <div class="card-icon">🔗</div>
+          <h3>Seamless Integration</h3>
+          <p>Connect with your existing tools and workflows</p>
+          <div class="card-progress">
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar"></div>
+            <div class="progress-bar"></div>
+            <div class="progress-bar"></div>
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card" data-index="2">
+        <div class="card-content">
+          <div class="card-icon">👥</div>
+          <h3>Real-time Collaboration</h3>
+          <p>Work together with your team in real-time</p>
+          <div class="card-progress">
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar"></div>
+            <div class="progress-bar"></div>
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card" data-index="3">
+        <div class="card-content">
+          <div class="card-icon">⚙️</div>
+          <h3>Customizable Workflows</h3>
+          <p>Adapt the system to your specific needs</p>
+          <div class="card-progress">
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar"></div>
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card" data-index="4">
+        <div class="card-content">
+          <div class="card-icon">🔒</div>
+          <h3>Advanced Security</h3>
+          <p>Enterprise-grade security and compliance</p>
+          <div class="card-progress">
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card" data-index="5">
+        <div class="card-content">
+          <div class="card-icon">🆘</div>
+          <h3>24/7 Support</h3>
+          <p>Round-the-clock assistance when you need it</p>
+          <div class="card-progress">
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+            <div class="progress-bar active"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .scroll-wrapper {
+    height: 800vh; /* 8 sections of 100vh each */
+    position: relative;
+  }
+  
+  .scroll-container {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3s ease;
+  }
+  
+  .title-section {
+    position: absolute;
+    top: 4rem;
+    left: 2rem;
+    z-index: 20;
+  }
+  
+  .section-title {
+    font-size: 4rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    max-width: 24rem;
+  }
+  
+  .title-underline {
+    height: 0.25rem;
+    width: 6rem;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border-radius: 9999px;
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+    margin-top: 2rem;
+  }
+  
+  .description-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.7s ease-out;
+  }
+  
+  .description-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .description-content {
+    max-width: 42rem;
+    text-align: center;
+  }
+  
+  .description-text {
+    font-size: 1.25rem;
+    color: #a0a0a0;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+  
+  .progress-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .dot {
+    height: 0.5rem;
+    width: 2rem;
+    background-color: #374151;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+  }
+  
+  .cards-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .card {
+    position: absolute;
+    width: 24rem;
+    height: 20rem;
+    transition: all 0.7s ease-out;
+    opacity: 0;
+    transform-origin: center center;
+  }
+  
+  .card.visible {
+    opacity: 1;
+  }
+  
+  .card-content {
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: 1px solid #374151;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease;
+  }
+  
+  .card-content:hover {
+    box-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+    transform: scale(1.05);
+  }
+  
+  .card-icon {
+    font-size: 2.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .card-content:hover .card-icon {
+    transform: scale(1.1);
+  }
+  
+  .card-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+  }
+  
+  .card-content p {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+  }
+  
+  .card-progress {
+    display: flex;
+    gap: 0.25rem;
+  }
+  
+  .progress-bar {
+    height: 0.375rem;
+    width: 1.5rem;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .progress-bar.active {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  }
+  
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 2.5rem;
+      max-width: 20rem;
+    }
+    
+    .title-section {
+      top: 2rem;
+      left: 1rem;
+    }
+    
+    .card {
+      width: 20rem;
+      height: 16rem;
+    }
+    
+    .description-text {
+      font-size: 1.125rem;
+      padding: 0 1rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionRef = document.getElementById('scrollSection');
+    const containerRef = document.getElementById('scrollContainer');
+    const descriptionContainer = document.getElementById('descriptionContainer');
+    const cards = document.querySelectorAll('.card');
+    
+    let currentCard = -1; // -1 means showing description
+    
+    // Define rotation angles for each card (alternating pattern)
+    const rotationAngles = [-2, 2, -3, 2, -2, 3];
+    
+    function handleScroll() {
+      if (!sectionRef) return;
+      
+      const sectionRect = sectionRef.getBoundingClientRect();
+      const sectionHeight = sectionRef.offsetHeight;
+      
+      // Clamp scroll within the section to keep cards visible until the section fully leaves viewport
+      const scrollInSection = Math.min(Math.max(-sectionRect.top, 0), sectionHeight);
+      const stepHeight = sectionHeight / (cards.length + 2); // +2 for description phase and buffer
+      const currentStep = Math.floor(scrollInSection / stepHeight);
+      
+      // Set current card: -1 for description, 0+ for cards
+      const newCurrentCard = Math.min(Math.max(currentStep - 1, -1), cards.length - 1);
+      
+      if (newCurrentCard !== currentCard) {
+        currentCard = newCurrentCard;
+        updateUI();
+      }
+    }
+    
+    function updateUI() {
+      // Update description visibility
+      if (currentCard >= 0) {
+        descriptionContainer.classList.add('hidden');
+      } else {
+        descriptionContainer.classList.remove('hidden');
+      }
+      
+      // Update cards
+      cards.forEach((card, index) => {
+        const isVisible = currentCard >= index;
+        
+        if (isVisible) {
+          card.classList.add('visible');
+          
+          // Calculate position for consistent right to left animation
+          let xPosition;
+          if (currentCard >= 2) {
+            // After 3 cards - spread positioning with right to left animation
+            const isMobile = window.innerWidth <= 768;
+            const leftRightMargin = isMobile ? 16 : 40; // 16px for mobile, 40px for desktop
+            const containerWidth = window.innerWidth - (leftRightMargin * 2);
+            const cardSpacing = containerWidth / cards.length;
+            const finalPosition = (index * cardSpacing) - (containerWidth / 2) + (cardSpacing / 2);
+            
+            // For desktop, respect the margins and don't clamp to full viewport
+            if (isMobile) {
+              // Ensure cards don't go outside viewport on mobile
+              const cardWidth = 320; // 20rem
+              const maxPosition = (window.innerWidth - cardWidth) / 2;
+              xPosition = Math.max(-maxPosition, Math.min(maxPosition, finalPosition));
+            } else {
+              // On desktop, use the calculated position with margins
+              xPosition = finalPosition;
+              // Debug: log the positioning values
+              if (index === 0) {
+                console.log('Desktop positioning:', {
+                  screenWidth: window.innerWidth,
+                  leftRightMargin,
+                  containerWidth,
+                  cardSpacing,
+                  finalPosition: xPosition
+                });
+              }
+            }
+          } else {
+            // First 3 cards progressive appearance from center moving left
+            const cardsToLeft = Math.max(0, currentCard - index);
+            xPosition = -cardsToLeft * 180;
+          }
+          
+          // Apply both position and rotation
+          const rotation = rotationAngles[index] || 0;
+          card.style.transform = `translateX(${xPosition}px) rotate(${rotation}deg)`;
+          card.style.transitionDelay = `${index * 100}ms`;
+        } else {
+          card.classList.remove('visible');
+          // Apply rotation even when hidden (for smooth transitions)
+          const rotation = rotationAngles[index] || 0;
+          card.style.transform = `translateX(400px) rotate(${rotation}deg)`;
+          card.style.transitionDelay = '0ms';
+        }
+      });
+    }
+    
+    // Initialize
+    updateUI();
+    
+    // Event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    
+    // Initial check
+    handleScroll();
+  });
+</script>

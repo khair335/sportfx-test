@@ -1,0 +1,116 @@
+---
+const performanceCards = [
+    {
+        src: "/landing/performance/pro.png",
+        alt: "Pro-Level Analysis",
+        title: "Pro-Level Analysis",
+    },
+    {
+        src: "/landing/performance/data.png",
+        alt: "Lab-grade biomechanics",
+        title: "Lab-grade biomechanics",
+    },
+    {
+        src: "/landing/performance/personalized.png",
+        alt: "Personalized Coaching",
+        title: "Personalized Coaching",
+    },
+    {
+        src: "/landing/performance/feedback.png",
+        alt: "Feedback Anytime",
+        title: "Feedback Anytime",
+    },
+];
+---
+
+<section>
+    <div class="max-w-[1440px] w-full mx-auto px-5 md:px-14 py-20">
+        <div
+            class="w-full flex flex-col gap-4 justify-end items-end font-plus-jakarta font-bold text-[28px] md:text-[50px] lg:text-[70px] xl:text-[80px] text-white leading-[80%] mb-16"
+        >
+            <h3>Unlock a complete view</h3>
+            <h3>
+                of your
+                <span
+                    class="bg-gradient-to-r from-[#32E6BC] to-[#fff]
+                  bg-clip-text text-transparent"
+                    >performance...</span
+                >
+            </h3>
+            <h3>not just the metrics</h3>
+        </div>
+        
+              <!-- Four Performance Cards Row -->
+              <div class="w-full  gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
+                {performanceCards.map((card) => (
+                    <div
+                        class="max-w-full lg:max-w-full xl:max-w-[314px] w-full md:h-[340px] h-[300px] rounded-[20px] overflow-hidden shadow-[0px_0px_141.4px_-33px_#97FFE15E] relative border border-[#97FFE15E]"
+                    >
+                        <img
+                            class="w-full h-full "
+                            src={card.src}
+                            alt={card.alt}
+                        />
+                        
+                        <div
+                            class="absolute inset-0 flex items-center justify-center p-6"
+                        >
+                            <p
+                                class="font-plus-jakarta font-bold text-[24px] md:text-[36px] text-white leading-[100%] text-center"
+                            >
+                                {card.title}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+  <!-- Four Performance Cards Row -->
+        <div class="w-full grid grid-cols-4 gap-8 md:pt-32 pt-8">
+            <div class="xl:col-span-3 lg:col-span-2 col-span-4">
+                <div class="md:p-8 p-4 border h-full border-gray-5 00 rounded-[20px] relative shadow-[0px_0px_141.4px_-33px_#97FFE15E]">
+                    <div class="absolute top-2 right-4 text-white">
+                        x
+                    </div>
+                  
+                        <div class="flex flex-col gap-1 pb-14">
+                            <h6 class=" font-plus-jakarta font-bold text-[24px] md:text-[36px] text-white leading-[100%]">Pro-Level Analysis with Zero Barriers</h6>
+                            <p class="font-plus-jakarta font-medium md:pt-0 pt-4 text-sm md:text-[20px] text-white leading-[100%]">
+                                Pro level mechanic breakdowns with no wearables, no sensors and no labs.
+                            </p>
+                        </div>
+
+                        <div class="flex xl:gap-1 gap-5 xl:flex-row flex-col">
+                            <div class=" text-[#B5B5B5] md:text-xl text-base font-plus-jakarta font-normal">
+                                Get a pro-grade analysis in minutes from a single phone video. No sensors, no multi-camera rigs, no gatekeepers. Our computer vision maps 1,000+ angles to surface sequence, posture, timing and more to give you the why behind your data.
+                            </div>
+                            <img 
+                            class="w-full max-w-[418px] h-[136px]"
+                            src="/landing/performance/elbow_positions_card.png" alt="">
+                        </div>
+                  
+                </div>
+            </div>
+            <div class="xl:col-span-1 lg:col-span-2 col-span-4">
+                <div
+                class="xl:max-w-[314px] max-w-full w-full xl:h-[340px] lg:h-full md:h-[340px] h-[240px] rounded-[20px] overflow-hidden shadow-[0px_0px_141.4px_-33px_#97FFE15E] relative border border-[#97FFE15E]"
+            >
+                <img
+                    class="w-full h-full "
+                    src="/landing/performance/data.png"
+                    alt="Data That Coaches You"
+                />
+                <div class="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+                <div
+                    class="absolute inset-0 flex items-center justify-center p-6"
+                >
+                    <p
+                        class="font-plus-jakarta font-bold text-[24px] md:text-[36px] text-white leading-[100%] text-center"
+                    >
+                        Data That Coaches You
+                    </p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>

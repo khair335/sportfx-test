@@ -1,0 +1,28 @@
+---
+import MailchimpWaitlist from "../forms/mailchimp/MailchimpWaitlist.astro";
+---
+
+<section
+  id="next-section"
+  class="waitlist-section flex items-start justify-center w-full   py-32"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-2 w-full items-start justify-center"
+  >
+    <!-- Left: Mockup Image -->
+    <div class="flex-1 flex items-start justify-center w-full">
+      <img src="/landing/waitlist/waitlist_hand.png" alt="App Mockups" class="w-full" />
+    </div>
+    <!-- Right: Waitlist Form -->
+    <div class="flex-1 flex flex-col items-start justify-center w-full mt-20">
+      <h2
+        class="w-full text-center md:text-left text-2xl md:text-3xl lg:text-4xl xl:text-[56px] 
+        font-bold text-white font-geist mb-10  leading-tight"
+      >
+      While the competition <br />waits, you'll be winning.
+      </h2>
+      <MailchimpWaitlist />
+    </div>
+  </div>
+</section>
+<!-- waitlist -->

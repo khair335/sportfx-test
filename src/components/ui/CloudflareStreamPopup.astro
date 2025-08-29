@@ -1,0 +1,139 @@
+---
+interface Props {
+  videoUID: string;
+  id?: string;
+}
+
+const { videoUID, id = "video-popup" } = Astro.props;
+const customerCode = "kd8b2zcop4ozwi4i";
+const videoSrc = `https://customer-${customerCode}.cloudflarestream.com/${videoUID}/iframe?controls=true&preload=metadata`;
+---
+
+<!-- Video Popup Modal -->
+<div
+  id={id}
+  class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden"
+>
+  <div class="relative max-w-4xl w-full mx-4">
+    <!-- Close Button -->
+    <button
+      id={`${id}-close`}
+      class="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 focus:outline-none z-10 transition-colors duration-200 cursor-pointer"
+    >
+      ✕
+    </button>
+
+    <!-- Video Container -->
+    <div class="relative bg-black rounded-lg overflow-hidden shadow-2xl">
+      <div class="cloudflare-stream-popup-container">
+        <iframe
+          id={`${id}-iframe`}
+          src={videoSrc}
+          class="cloudflare-stream-popup"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+          allowfullscreen="true"
+          data-video-uid={videoUID}
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://embed.cloudflarestream.com/embed/sdk.latest.js"></script>
+
+<script define:vars={{ id }}>
+  document.addEventListener("DOMContentLoaded", function () {
+    const videoPopup = document.getElementById(id);
+    const closeBtn = document.getElementById(`${id}-close`);
+    const iframe = document.getElementById(`${id}-iframe`);
+    let player = null;
+
+    // Initialize player when iframe loads
+    iframe?.addEventListener('load', function() {
+      if (window['Stream']) {
+        player = window['Stream'](iframe);
+        player.controls = true;
+      }
+    });
+
+    // Function to open popup
+    window.openVideoPopup = function (popupId = id) {
+      const popup = document.getElementById(popupId);
+      const popupIframe = document.getElementById(`${popupId}-iframe`);
+
+      if (popup && popupIframe) {
+        popup.classList.remove("hidden");
+        
+        // Initialize player if not already done
+        if (!player && window['Stream']) {
+          player = window['Stream'](popupIframe);
+          player.controls = true;
+        }
+        
+        // Start playback
+        if (player) {
+          player.play().catch(() => {
+            player.muted = true;
+            player.play();
+          });
+        }
+      }
+    };
+
+    // Function to close popup
+    function closePopup() {
+      if (videoPopup) {
+        videoPopup.classList.add("hidden");
+        
+        // Try to pause and reset player if available
+        if (player) {
+          try {
+            player.pause();
+            player.currentTime = 0; // Reset video to beginning
+          } catch (e) {
+            console.warn('Error controlling video player:', e);
+          }
+        }
+      }
+    }
+
+    // Close popup when close button is clicked
+    closeBtn?.addEventListener("click", closePopup);
+
+    // Close popup when clicking outside the video
+    videoPopup?.addEventListener("click", function (e) {
+      if (e.target === videoPopup) {
+        closePopup();
+      }
+    });
+
+    // Close popup with Escape key
+    document.addEventListener("keydown", function (e) {
+      if (
+        e.key === "Escape" &&
+        videoPopup &&
+        !videoPopup.classList.contains("hidden")
+      ) {
+        closePopup();
+      }
+    });
+  });
+</script>
+
+<style>
+  .cloudflare-stream-popup-container {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .cloudflare-stream-popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>

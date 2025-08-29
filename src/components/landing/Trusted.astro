@@ -1,0 +1,368 @@
+---
+// Testimonial data array
+const testimonials = [
+  {
+    name: "Justin Fields",
+    image: "/landing/trusted/Justin_Fields.png",
+    alt: "Justin Fields",
+    testimonial: "I partnered with sportFX to elevate my game in every possible way. I'm always looking for that edge—and this platform delivers. The possibilities with sportFX are endless. It's not just helping me level up—it's going to change the game for athletes everywhere.",
+    achievements: [
+      "NY Jets QB, Big Ten QB of the Year (2019, 2020)",
+      "1st-Team All-Big Ten (2019, 2020), Sugar Bowl MVP (2020)"
+    ],
+    position: 'topRight'
+  },
+  {
+    name: "Joe Girardi",
+    image: "/landing/trusted/Joe_Girardi.png",
+    alt: "Joe Girardi",
+    testimonial: "If I had sportFX when I was playing or managing in the MLB, I would've eaten it up. It's that powerful. But what really drew me in is how this platform is going to transform coaching for young athletes. We're finally democratizing elite-level insight for families and kids who've been priced out for too long. sportFX isn't just for the pros—it's for everyone.",
+    achievements: [
+      "World Series Champion (2009 Manager)",
+      "AL Manager of the Year (2006)",
+      "3x World Series Champion (1996, 1998, 1999), All-Star (2000)"
+    ],
+    position: 'topLeft'
+  },
+  {
+    name: "Adam Gase",
+    image: "/landing/trusted/Adam_Gase.png",
+    alt: "Adam Gase",
+    testimonial: "If sportFX existed when I was coaching, we would've saved countless hours on scouting, hiring, and draft decisions. It's like having a full AI-powered front office in your hands—faster, smarter, and relentlessly objective. This is the edge every team's looking for. sportFX isn't just the future of football—it's how the future will be won.",
+    achievements: [
+      "Head Coach - Miami Dolphins (2016-2018)",
+      "New York Jets (2019-2020)"
+    ],
+    position: 'bottomRight'
+  },
+  {
+    name: "Jason Kipnis",
+    image: "/landing/trusted/Jason_Kipnis.png",
+    alt: "Jason Kipnis",
+    testimonial: "If I had sportFX during my playing days, I would've squeezed more out of every at-bat, every rep, every season. It's built like the tech the pros use - but it's made for everyone. This isn't the future of baseball - it's already here.",
+    achievements: [
+      "2x All-Star (2013, 2015), AL Player of the Month (June 2015)",
+      "Cleveland Indians All-Decade Team (2010s)"
+    ],
+    position: 'bottomLeft'
+  },
+  {
+    name: "Jesse Biddle",
+    image: "/landing/trusted/Jesse_Biddle.png",
+    alt: "Jesse Biddle",
+    testimonial: "Pitching is all about rhythm, mechanics, and mindset. sportFX breaks it all down from a single video - no labs, no sensors, no guesswork. It's like having a pitching coach and performance lab in your pocket.",
+    achievements: [
+      "Pitcher (Atlanta Braves, Texas Rangers, Cincinnati Reds)",
+      "Japan Series Champion (2022)"
+    ],
+    position: 'topLeft'
+  }
+];
+---
+
+<section id="trusted-section">
+  <div class="w-full mx-auto  py-20">
+    <!-- text section -->
+   
+
+  
+  
+    <!-- Scroll Animation Wrapper -->
+    <div class="scroll-wrapper" id="testimonialScrollSection">
+      <div class="scroll-container" id="testimonialScrollContainer">
+        <!-- Description - Shows when no cards are active -->
+        <div class="description-container" id="testimonialDescriptionContainer">
+          <div class="description-content">
+            <div class="max-w-[1440px] w-full  px-4 md:px-14 mx-auto flex lg:flex-row flex-col gap-20">
+              <div
+              class=" flex flex-col font-plus-jakarta justify-start items-start font-bold text-4xl lg:text-6xl xl:text-[80px] text-white leading-[100%]"
+            >
+              <h2>Trusted by</h2>
+              <h2>the Pros.</h2>
+              <h2>
+                Built for
+                <span
+                  class="bg-gradient-to-r from-[#32E6BC] to-[#fff]
+                          bg-clip-text text-transparent"
+                  >You.</span
+                >
+              </h2>
+        
+            </div>
+              <div class="flex flex-col md:gap-10 gap-5 items-start font-thin text-light text-white xl:text-[30px] md:text-2xl text-xl leading-[100%] max-w-full lg:max-w-[600px] xl:max-w-[730px] w-full text-left">
+                <p>sportFX bridges the gap between dreams and data.</p>
+        
+                <p>
+                  Whether you're a young athlete chasing the next level, a parent
+                  supporting the journey, or a coach trying to unlock potential...
+                </p>
+        
+                <p>You now have access to the same tools the pros trust.</p>
+              </div>
+            </div>
+            <!-- <div class="progress-dots mt-8">
+              {testimonials.map(() => (
+                <div class="dot"></div>
+              ))}
+            </div> -->
+          </div>
+        </div>
+
+        <!-- Testimonial Cards Grid -->
+        <div class="testimonial-cards-container">
+          {testimonials.map((testimonial, index) => (
+            <div class="testimonial-card" data-index={index}>
+              <div class="trusted-slider-card flex flex-col justify-between relative w-full min-h-[550px] md:min-h-[870px] min-w-[300px] max-w-[300px] md:min-w-[440px] md:max-w-[440px]">
+                <div class="">
+
+                
+                <div class="flex justify-center items-center">
+                  <div class="max-w-[80px] md:max-w-[120px] w-full bg-black rounded-full h-3 md:h-5 my-3 md:my-5">
+                  </div>
+                </div>
+              
+                <div class="relative">
+                  <p class={`font-plus-jakarta font-bold text-[20px] md:text-[40px] text-transparent leading-[100%] w-[100px] md:w-[160px] absolute z-10 ${
+                    testimonial.position === 'topLeft' ? 'top-0 left-4' :
+                    testimonial.position === 'topRight' ? 'top-0 right-0' :
+                    testimonial.position === 'bottomLeft' ? 'bottom-6 left-0' :
+                    testimonial.position === 'bottomRight' ? 'bottom-6 right-4' : 'top-0 right-0'
+                  } bg-gradient-to-b from-[#FAFAFA] to-[#949494] bg-clip-text`}>
+                    {testimonial.name}
+                  </p>
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.alt}
+                    class=" max-h-[177px] md:max-h-[277px] relative z-[1] object-center object-cover mx-auto"
+                  />
+                  <div
+                    style="background: linear-gradient(90deg, #00996E 0%, #00FFB7 50%, #00996E 100%);"
+                    class="h-2 md:h-3.5"
+                  >
+                  </div>
+                </div>
+              </div>
+                <div class="px-4 md:px-8 md:py-10 py-5 flex flex-col gap-10 flex-1 justify-between h-full">
+                  <p class="font-geist font-normal text-[#FAFAFA] text-center md:text-xl text-sm">
+                    {testimonial.testimonial}
+                  </p>
+
+                  <div class="text-[#FAFAFA] font-plus-jakarta md:text-[12px] text-[8px] font-light text-center">
+                    {testimonial.achievements.map((achievement) => (
+                      <p>{achievement}</p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .scroll-wrapper {
+    height: 600vh; /* 6 sections of 100vh each (5 cards + 1 description) */
+    position: relative;
+  }
+  
+  .scroll-container {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3s ease;
+  }
+  
+  .description-container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    inset: 0;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.7s ease-out;
+  }
+  
+  .description-container.hidden {
+    opacity: 0.1;
+    pointer-events: none;
+  }
+  
+  .description-content {
+    max-width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .progress-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .dot {
+    height: 0.5rem;
+    width: 2rem;
+    background-color: #374151;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+  }
+  
+  .testimonial-cards-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .testimonial-card {
+    position: absolute;
+    width: 24rem;
+    height: auto;
+    transition: all 0.7s ease-out;
+    opacity: 0;
+    transform-origin: center center;
+  }
+  
+  .testimonial-card.visible {
+    opacity: 1;
+  }
+  
+  .testimonial-card .trusted-slider-card {
+    transition: all 0.5s ease;
+  }
+  
+  .testimonial-card.visible .trusted-slider-card {
+    /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); */
+  }
+  
+  .testimonial-card.visible .trusted-slider-card:hover {
+    box-shadow: 0 0 30px rgba(50, 230, 188, 0.3);
+    transform: scale(1.02);
+  }
+  
+  @media (max-width: 768px) {
+    .scroll-wrapper {
+      height: 500vh;
+    }
+    
+    .description-content {
+      padding: 0 1rem;
+    }
+    
+    .testimonial-card {
+      width: 20rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionRef = document.getElementById('testimonialScrollSection');
+    const containerRef = document.getElementById('testimonialScrollContainer');
+    const descriptionContainer = document.getElementById('testimonialDescriptionContainer');
+    const cards = document.querySelectorAll('.testimonial-card');
+    
+    let currentCard = -1; // -1 means showing description
+    
+    // Define rotation angles for each card (alternating pattern)
+    const rotationAngles = [-2, 2, -3, 2, -2];
+    
+    function handleScroll() {
+      if (!sectionRef) return;
+      
+      const sectionRect = sectionRef.getBoundingClientRect();
+      const sectionHeight = sectionRef.offsetHeight;
+      
+      // Clamp scroll within the section to keep cards visible until the section fully leaves viewport
+      const scrollInSection = Math.min(Math.max(-sectionRect.top, 0), sectionHeight);
+      const stepHeight = sectionHeight / (cards.length + 2); // +2 for description phase and buffer
+      const currentStep = Math.floor(scrollInSection / stepHeight);
+      
+      // Set current card: -1 for description, 0+ for cards
+      const newCurrentCard = Math.min(Math.max(currentStep - 1, -1), cards.length - 1);
+      
+      if (newCurrentCard !== currentCard) {
+        currentCard = newCurrentCard;
+        updateUI();
+      }
+    }
+    
+    function updateUI() {
+      // Update description visibility
+      if (currentCard >= 0) {
+        descriptionContainer.classList.add('hidden');
+      } else {
+        descriptionContainer.classList.remove('hidden');
+      }
+      
+      // Update cards
+      cards.forEach((card, index) => {
+        const isVisible = currentCard >= index;
+        const cardElement = card as HTMLElement;
+        
+        if (isVisible) {
+          card.classList.add('visible');
+          
+          // Calculate position for consistent right to left animation
+          let xPosition;
+          if (currentCard >= 2) {
+            // After 3 cards - spread positioning with right to left animation
+            const isMobile = window.innerWidth <= 768;
+            const leftRightMargin = isMobile ? 16 : 40; // 16px for mobile, 40px for desktop
+            const containerWidth = window.innerWidth - (leftRightMargin * 2);
+            const cardSpacing = containerWidth / cards.length;
+            const finalPosition = (index * cardSpacing) - (containerWidth / 2) + (cardSpacing / 2);
+            
+            // For desktop, respect the margins and don't clamp to full viewport
+            if (isMobile) {
+              // Ensure cards don't go outside viewport on mobile
+              const cardWidth = 320; // 20rem
+              const maxPosition = (window.innerWidth - cardWidth) / 2;
+              xPosition = Math.max(-maxPosition, Math.min(maxPosition, finalPosition));
+            } else {
+              // On desktop, use the calculated position with margins
+              xPosition = finalPosition;
+            }
+          } else {
+            // First 3 cards progressive appearance from center moving left
+            const cardsToLeft = Math.max(0, currentCard - index);
+            xPosition = -cardsToLeft * 180;
+          }
+          
+          // Apply both position and rotation
+          const rotation = rotationAngles[index] || 0;
+          cardElement.style.transform = `translateX(${xPosition}px) rotate(${rotation}deg)`;
+          cardElement.style.transitionDelay = `${index * 100}ms`;
+        } else {
+          card.classList.remove('visible');
+          // Apply rotation even when hidden (for smooth transitions)
+          const rotation = rotationAngles[index] || 0;
+          cardElement.style.transform = `translateX(400px) rotate(${rotation}deg)`;
+          cardElement.style.transitionDelay = '0ms';
+        }
+      });
+    }
+    
+    // Initialize
+    updateUI();
+    
+    // Event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    
+    // Initial check
+    handleScroll();
+  });
+</script>

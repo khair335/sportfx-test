@@ -1,0 +1,82 @@
+---
+// Pure Astro component - 
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import man from "@/images/landing/man.svg";
+import logo12 from "@/images/brands/12.svg";
+import building from "@/images/landing/building.svg";
+import coach from "@/images/landing/coach.svg";
+import parents from "@/images/landing/parents.svg";
+import scouts from "@/images/landing/scouts.svg";
+import { Image } from "astro:assets";
+const footerItems = [
+  {
+    icon: man,
+    iconStyles: "w-[39px] h-[51px] top-0.5 left-2",
+    title: "Youth Athletes",
+    description: "Foundations today. Superstardom tomorrow.",
+  },
+  {
+    icon: building,
+    iconStyles: "w-[39px] h-[51px] top-0.5 left-2",
+    title: "Competitive Players",
+    description: "Edge isn't given. It's trained—and measured.",
+  },
+  {
+    icon: coach,
+    iconStyles: "w-[39px] h-[51px] top-0.5 left-2",
+    title: "Coaches",
+    description: "Turn film into feedback. Turn feedback into results.",
+  },
+  {
+    icon: parents,
+    iconStyles: "w-[39px] h-[51px] top-0.5 left-2",
+    title: "Parents",
+    description: "Dreams don't need a budget. Just belief—and sportFX.",
+  },
+  {
+    icon: scouts,
+    iconStyles: "w-[39px] h-[51px] top-0.5 left-2",
+    title: "Scouts",
+    description: "See deeper. Scout smarter. Draft better.",
+  },
+];
+---
+
+<section class="w-full bg-[#1c2120] rounded-none pt-[65px] pb-[140px]">
+    <Wrapper variant="standard" class="py-0  max-w-[740px] lg:max-w-[968px] xl:max-w-[1390px] px-5 xl:px-[48px]" >
+
+  
+    <div class="mx-auto max-w-[1120px] w-full">
+        <h1 class="max-w-[90%] md:max-w-[740px] lg:max-w-[968px] m-auto mb-[68px] font-geist font-bold text-3xl md:text-4xl lg:text-[60px] xl:text-[80px] leading-[100%] tracking-[-0.04em] text-center text-white">
+            From Day One to Game Day—it's Built for <span
+            class="bg-[conic-gradient(from_3.01deg_at_38.8%_-45.38%,_#C2FF35_0deg,_#32E6BC_146.52deg,_#27C5FF_360deg)] bg-clip-text text-transparent dark:bg-[conic-gradient(from_3.01deg_at_38.8%_-45.38%,_#27C5FF_0deg,_#32E6BC_146.52deg,_#C2FF35_360deg)]"
+            >You</span>.
+        </h1>
+        <div class="flex flex-col items-start gap-5 xl:gap-[30px] py-0 px-0 ">
+    {footerItems.map((item, index) => (
+      <Fragment>
+        <div class="w-full bg-white/30 h-px"></div>
+
+        <div class="flex items-center gap-5 md:gap-10 w-full">
+          <div class="relative w-full  max-w-[30px] lg:max-w-[54px] h-[30px] lg:h-[54px] -mt-5 md:mt-0">
+         
+              <Image src={item.icon} alt="Icon" class={item.iconStyles} />
+
+       
+          </div>
+
+          <div class="flex-1 font-['Inter',Helvetica] text-neutral-50 text-sm md:text-lg lg:text-2xl xl:text-[32px] leading-normal">
+            <span class="font-semibold">{item.title}</span>
+            <span class="font-normal"> – {item.description}</span>
+          </div>
+        </div>
+
+        {index === footerItems.length - 1 && (
+          <div class="w-full bg-white/30 h-px"></div>
+        )}
+      </Fragment>
+    ))}
+    </div>
+  </div>
+</Wrapper>
+</section>

@@ -1,0 +1,35 @@
+{
+  "name": "sportfx-website",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "astro build && wrangler pages deploy dist --commit-dirty=false"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.6.0",
+    "@astrojs/mdx": "^4.2.0",
+    "@astrojs/partytown": "^2.1.4",
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrolib/seo": "^1.0.0-beta.8",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.0.14",
+    "astro": "^5.5.1",
+    "marked": "^16.1.2",
+    "tailwind-scrollbar-hide": "^2.0.0",
+    "tailwindcss": "^4.0.14"
+  },
+  "devDependencies": {
+    "@types/marked": "^5.0.2"
+  }
+}
